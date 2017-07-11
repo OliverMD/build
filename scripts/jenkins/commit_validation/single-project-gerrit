@@ -137,9 +137,11 @@ echo_cmd ccache -s
 # Manditory steps complete, install the deferred error handler.
 trap deferred_error_handler ERR
 
+echo ${GERRIT_PROJECT}
+
 if [ -n "$GOPROJECT" ]
 then
-    pushd ${repo_path}
+    pushd goproj/src/github.com/couchbase/${GERRIT_PROJECT}
     eval "${ENV_VARS} go build"
     eval "go vet"
     eval "${ENV_VARS} go test -v"
